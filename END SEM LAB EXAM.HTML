@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup Form</title>
+
+    <style>
+        body {
+            font-family: Arial;
+            background-color: lightblue;
+            text-align: center;
+        }
+
+        form {
+            background-color: white;
+            width: 300px;
+            margin: 100px auto;
+            padding: 25px;
+            border-radius: 10px;
+        }
+
+        input {
+            width: 90%;
+            padding: 10px;
+            margin: 10px;
+        }
+
+        button {
+            background-color: blue;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <form id="signupForm">
+
+        <h2>Signup Form</h2>
+
+        <input type="text" id="name"
+               placeholder="Enter Name">
+
+        <input type="email" id="email"
+               placeholder="Enter Email">
+
+        <input type="password" id="password"
+               placeholder="Enter Password">
+
+        <button type="submit">Signup</button>
+
+        <p id="message"></p>
+
+    </form>
+
+    <script>
+
+        document.getElementById("signupForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let password = document.getElementById("password").value;
+
+            // Check all fields
+            if (name === "" || email === "" || password === "") {
+                document.getElementById("message").innerHTML =
+                    "Please fill all fields";
+                return;
+            }
+
+            // Store details in Local Storage
+            let user = {
+                name: name,
+                email: email,
+                password: password
+            };
+
+            localStorage.setItem("user", JSON.stringify(user));
+
+            document.getElementById("message").innerHTML =
+                "Signup Successful! Details Saved.";
+
+            document.getElementById("signupForm").reset();
+
+        });
+
+    </script>
+
+</body>
+</html>
